@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
+import { Provider } from 'react-redux'
+import {store} from './redux/store' 
+import Layout from './components/layout/Layout'
+import Admin from './components/Admin/Admin'
 
-function App() {
-  return (
-    <div className="App">
-      This is the App component 
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    return ( 
+      <Provider store={store}> 
+      <Admin/>
+      </Provider>
+    )
+  }
 }
 
-export default App;
