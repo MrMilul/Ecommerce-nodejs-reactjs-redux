@@ -4,6 +4,8 @@ Go to server directory and comment:
     npm run initial
     npm start
 
-CLIENT:
 
-    
+
+CLIENT:
+Go to client directory and comment:
+    npm install 
