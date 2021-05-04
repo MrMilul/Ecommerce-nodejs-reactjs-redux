@@ -1,4 +1,5 @@
 //********************************** Using Packages *******************************************//
+require('dotenv').config()
 const express = require('express') 
 const app = express()
 const morgan = require('morgan')
@@ -14,6 +15,8 @@ app.use(cors())
 //********************************** Constants *******************************************//
 const PORT = process.env.PORT || 5000
 
+const connectionToDB = require('./config/db.js')
+connectionToDB()
 //********************************** Routers *******************************************//
 app.get('/', (req, res, next)=>{
     res.send("home page")
@@ -42,4 +45,5 @@ app.use((error, req, res, next)=>{
 
 app.listen(PORT, ()=>{
     console.log("Server Is Connected!")
+    // console.log(`${DB}`)
 })
