@@ -1,49 +1,44 @@
 //********************************** Using Packages *******************************************//
-require('dotenv').config()
-const express = require('express') 
-const app = express()
-const morgan = require('morgan')
-const bodyParser = require('body-parser')
-const cors = require('cors')
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-app.use(bodyParser.urlencoded({ extended: false}))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-app.use(morgan('dev'))
+app.use(morgan("dev"));
 
-app.use(cors())
+app.use(cors());
 //********************************** Constants *******************************************//
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000;
 
-const connectionToDB = require('./config/db.js')
-connectionToDB()
+const connectionToDB = require("./config/db.js");
+connectionToDB();
 //********************************** Routers *******************************************//
-app.get('/', (req, res, next)=>{
-    res.send("home page")
-})
+const categoryRoute = require("./routers/categotyRouter.js");
+const productRoute = require("./routers/productRouter.js")
 
-app.get('/test', (req, res, next)=>{
-    res.send("test page")
-})
+app.use("/api/category", categoryRoute);
+app.use("/api/product", productRoute)
 
 //********************************** Error Handleling ***********************************//
-app.use((req, res, next)=>{
-    const error = new Error("Not Found")
-    error.status = 404
-    next(error)
-})
-app.use((error, req, res, next)=>{
-    res.status(error.status || 500)
-    res.json({
-        error: {
-            message: error.message,
-        }
-       
-    })
-}) 
+app.use((req, res, next) => {
+  const error = new Error("Not Found");
+  error.status = 404;
+  next(error);
+});
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message,
+    },
+  });
+});
 
-
-app.listen(PORT, ()=>{
-    console.log("Server Is Connected!")
-    // console.log(`${DB}`)
-})
+app.listen(PORT, () => {
+  console.log("Server Is Connected!");
+});
