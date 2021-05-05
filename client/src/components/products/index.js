@@ -1,12 +1,12 @@
 import React from 'react';
 import { ProductsContainer, ProductsHeading, ProductWrapper, ProductCard, ProductImg, 
     ProductInfo, ProductTitle, ProductDesc, ProductPrice, ProductButton } from './ProductsElements'
-const Products = ({data}) => {
+const Products = (props) => {
     return (
         <ProductsContainer>
-            <ProductsHeading>Choose Your Favorite</ProductsHeading>
+            <ProductsHeading>{props.heading}</ProductsHeading>
             <ProductWrapper>
-                {data.map((product, index) => {
+                {props.data.map((product, index) => {
                     return(
                         <ProductCard key={index}>
                             <ProductImg src={product.img} alt={product.alt}/>
