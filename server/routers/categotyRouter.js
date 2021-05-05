@@ -17,13 +17,13 @@ categoryRoute.get("/", async (req, res) => {
 
 categoryRoute.post("/", async (req, res) => {
   try {
-    const createProduct = await new Category({
+    const createCategory = await new Category({
       name: req.body.name,
     });
 
-    createProduct.save();
+    createCategory.save();
     res.status(201).json({
-      message: `The category-${createProduct.name}- is successfully created`,
+      message: `The category-${createCategory.name}- is successfully created`,
     });
   } catch (error) {
     res.status(400).json(error);
