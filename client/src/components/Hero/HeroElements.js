@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import ImgBg from '../../images/pizza-3.jpg'
+import ImgBg from '../../images/pizza-3.jpeg'
 
 
 export const HeroContainer = styled.div `
@@ -7,6 +7,7 @@ export const HeroContainer = styled.div `
     background-size: cover;
     background-position: center;
     height: 100vh;
+    width: 100vw;
 
 `
 
@@ -41,7 +42,7 @@ export const HeroItems = styled.div `
 export const HeroH1 = styled.h1 `
     font-size: clamp(2.5rem, 10vm, 5rem);
     margin-bottom: 1rem;
-    box-shadow: 3px 8px #e9ba23;
+    box-shadow: 3px 8px #AEF51F;
     letter-spacing: 3px;
 `
 
@@ -54,7 +55,7 @@ export const HeroBtn = styled.button `
     font-size: 1.4rem;
     padding:1rem 4rem;
     border:none;
-    background-color: #e31837;
+    background-color: #AEF51F;
     color: #fff;
     transition: .2s ease-out;
 

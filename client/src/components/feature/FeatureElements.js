@@ -16,6 +16,7 @@ export const  FeatureContainer = styled.div `
     color:#fff;
     text-align: center;
     padding: 0 1rem;
+    width: 100vw;
 
 h1{
     font-size : clamp(3rem, 5vw, 3rem);

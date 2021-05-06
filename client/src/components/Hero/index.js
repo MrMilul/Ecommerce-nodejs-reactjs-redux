@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Navbar from '../navbar'
 import Sidebar from '../sidebar'
 import { HeroContainer, HeroContent, HeroItems, HeroH1, HeroP, HeroBtn  } from './HeroElements'
+
 const Hero = () => {
     const [isOpen, setIsOpen] = useState(false)
 
@@ -14,10 +15,10 @@ const Hero = () => {
         <HeroContainer>
             <Navbar toggle={toggle}/>
             <Sidebar toggle={toggle} isOpen={isOpen}/>
-            <HeroContent onClick={toggle}>
+            <HeroContent>
                 <HeroItems>
-                    <HeroH1>Greatest Pizza Ever</HeroH1>
-                    <HeroP>Ready In 50 Seconds</HeroP>
+                    <HeroH1>We Take Care Of Your Diet</HeroH1>
+                    <HeroP>WE Think About Your Health</HeroP>
                     <HeroBtn>Place Order</HeroBtn>
                 </HeroItems>
             </HeroContent>

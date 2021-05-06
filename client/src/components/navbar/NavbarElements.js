@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { FaPizzaSlice } from 'react-icons/fa'
+import { FaHeartbeat } from 'react-icons/fa'
 
 export const Nav = styled.nav`
     background: transparent;
@@ -33,14 +33,12 @@ export const NavIcon = styled.div `
     cursor: pointer;
     color:#fff;   
     
- 
-
     p{
         transform: translate(-175%, 130%);
         font-weight: bold
     }
 `
-export const Bars = styled(FaPizzaSlice)` 
+export const Bars = styled(FaHeartbeat)` 
     font-size: 2rem;
-    transform: translate(-50%,-15% )
+    transform: translate(-50%, 15% )
 `
