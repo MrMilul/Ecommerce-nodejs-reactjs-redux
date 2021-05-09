@@ -17,11 +17,11 @@ categoryRoute.get("/", async (req, res) => {
 
 categoryRoute.post("/", async (req, res) => {
   try {
-    const createCategory = await new Category({
+    const category =new Category({
       name: req.body.name,
     });
 
-    createCategory.save();
+    const createCategory = await category.save();
     res.status(201).json({
       message: `The category-${createCategory.name}- is successfully created`,
     });
