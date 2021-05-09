@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const productSchema = new mongoose.Schema({
+const productsSchema = new mongoose.Schema({
   name: { type: String, required: true },
   price: { type: String, required: true },
   discount:{type: Number}, 
@@ -14,5 +14,5 @@ const productSchema = new mongoose.Schema({
   isVegan: {type: Boolean, default: false},
 });
 
- module.exports = mongoose.model("Product", productSchema);
+ module.exports = mongoose.model("Products", productsSchema);
 

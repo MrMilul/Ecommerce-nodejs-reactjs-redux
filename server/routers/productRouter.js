@@ -1,6 +1,6 @@
 const express = require("express");
 const productRoute = express.Router();
-const Product = require("../models/products.js");
+const Products = require("../models/ss.js");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -15,7 +15,7 @@ const upload = multer({ storage: storage });
 
 productRoute.get("/", async (req, res) => {
   try {
-    const products = await Product.find({});
+    const products = await Products.find({});
     if (products.length === 0) {
       console.log("empty")
       res.json({message:"the Product section is Empty"})
@@ -29,7 +29,7 @@ productRoute.get("/", async (req, res) => {
 
 productRoute.post("/", upload.single("img"), async (req, res) => {
   try {
-    const createProduct = await new Product({
+    const createProduct = await new Products({
       name: req.body.name,
       price: req.body,
       img: req.file.path,
@@ -55,7 +55,7 @@ productRoute.post("/", upload.single("img"), async (req, res) => {
 productRoute.delete("/:id", async (req, res) => {
   const proId = req.params.id;
   try {
-    const proDeleted = await Product.remove({ _id: proId });
+    const proDeleted = await Products.remove({ _id: proId });
 
     res.status(201).json(proDeleted);
   } catch (error) {
