@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const DB = async() =>{
+ const DB = async() =>{
     try{
         await mongoose.connect ( process.env.DATABASE_LINK, 
             {useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex:true})
@@ -10,5 +10,9 @@ const DB = async() =>{
         process.exit(1)
     }
 }
+
+
+
+
 
 module.exports =  DB
