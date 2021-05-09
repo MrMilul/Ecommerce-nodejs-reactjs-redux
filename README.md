@@ -10,3 +10,5 @@ CLIENT:
 Go to client directory and comment:
 
     npm install 
+    npm start
+
