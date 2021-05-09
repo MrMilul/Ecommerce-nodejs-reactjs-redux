@@ -14,4 +14,5 @@ const productSchema = new mongoose.Schema({
   isVegan: {type: Boolean, default: false},
 });
 
-exports.module = mongoose.model("Product", productSchema);
+ module.exports = mongoose.model("Product", productSchema);
+
