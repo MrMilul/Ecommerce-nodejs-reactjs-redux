@@ -1,6 +1,6 @@
 const express = require("express");
 const productRoute = express.Router();
-const Products = require("../models/ss.js");
+const Products = require("../models/products");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -13,14 +13,17 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+
+
+
 productRoute.get("/", async (req, res) => {
   try {
     const products = await Products.find({});
     if (products.length === 0) {
-      console.log("empty")
+      
       res.json({message:"the Product section is Empty"})
     } else {
-      console.log("products")
+      res.json(products)
     }
   } catch (error) {
     res.json(error)
@@ -29,7 +32,7 @@ productRoute.get("/", async (req, res) => {
 
 productRoute.post("/", upload.single("img"), async (req, res) => {
   try {
-    const createProduct = await new Products({
+    const product = new Products({
       name: req.body.name,
       price: req.body,
       img: req.file.path,
@@ -43,7 +46,7 @@ productRoute.post("/", upload.single("img"), async (req, res) => {
       isVegan: req.body.isVegan,
     });
 
-    createProduct.save();
+    const createProduct = await product.save();
     res.status(201).json({
       message: `The category-${createProduct.name}- is successfully created`,
     });

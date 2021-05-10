@@ -4,6 +4,8 @@ const Users = require('../models/users')
 const bcrypt = require('bcryptjs')
 const { generateToken } = require('../config/token.js')
 
+
+// The below get http requist is for admin page and it will be complited soon!
 // usersRoute.get('/', async(req, res)=>{
 //     try{
 //         const users = await Users.find({})
@@ -17,6 +19,7 @@ const { generateToken } = require('../config/token.js')
 //         res.json(error)
 //     }
 // })
+
 usersRoute.post('/register', async(req, res)=>{
     try{
         const user = new Users({
@@ -38,5 +41,25 @@ usersRoute.post('/register', async(req, res)=>{
         res.status(400).json(error.message)
     }
     
+})
+
+usersRoute.post('/signin', async(req, res)=>{
+    const user = await Users.findOne({email:req.body.email})
+    if(user){
+        if(bcrypt.compareSync(req.body.password, user.password)){
+            res.status(200).json({
+                id: user._id, 
+                name:user.name,
+                email:user.email,
+                isAdmin: user.isAdmin,
+                token: generateToken(user)
+
+            })
+        }else{
+            res.status(401).json({message: "Invalid Email or Password, please Try again!"})
+        }
+    }else{
+        res.status(401).json({message: "Invalid Credential, please Try again!"})
+    }
 })
 module.exports = usersRoute;
