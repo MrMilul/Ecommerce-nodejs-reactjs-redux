@@ -22,20 +22,26 @@ const { generateToken } = require('../config/token.js')
 
 usersRoute.post('/register', async(req, res)=>{
     try{
-        const user = new Users({
-            name: req.body.name,
-            email:req.body.email,
-            password: bcrypt.hashSync(req.body.password, 8),
-            isAdmin: req.body.isAdmin
-        })
-        const createUser =  await user.save()
-        res.status(201).json({
-            id: createUser._id,
-            name:createUser.name,
-            email:createUser.email,
-            isAdmin: createUser.isAdmin,
-            token: generateToken(createUser)
-        })
+        const user = await Users.find({email:req.body.email})
+        if(user){
+            res.status(400).json({message: "An account by given Email already Exist!"})
+        }else{
+            const user = new Users({
+                name: req.body.name,
+                email:req.body.email,
+                password: bcrypt.hashSync(req.body.password, 8),
+                isAdmin: req.body.isAdmin
+            })
+            const createUser =  await user.save()
+            res.status(201).json({
+                id: createUser._id,
+                name:createUser.name,
+                email:createUser.email,
+                isAdmin: createUser.isAdmin,
+                token: generateToken(createUser)
+            })
+        }
+        
      
     }catch(error){
         res.status(400).json(error.message)
