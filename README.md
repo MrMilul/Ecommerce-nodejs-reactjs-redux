@@ -1,10 +1,12 @@
 SERVER:
 1.Go to server directory and comment:
 
-    npm run initial
+    npm install
     npm start
 
 2.In the server directory:
+
+
     if (Linux){
 
     touch .env 
@@ -13,8 +15,6 @@ SERVER:
     echo JWT_SECRET=your secret word for making Token >> .env
     } 
 
-    
-    
     else{
         make it manually 
 
