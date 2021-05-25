@@ -15,7 +15,6 @@ import Button from "./components/reuseable/button/Button.js";
 function App() {
   return (
     <Router>
-      <Button>more info</Button>
       <GlobalStyle />
       <Hero />
       <Products
