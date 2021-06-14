@@ -7,11 +7,9 @@ const productsSchema = new mongoose.Schema({
   img: { type: String },
   desc: { type: String },
   countInStock: { type: Number },
-  ingredientes: { type: String },
   raiting: { type: Number },
   numReview: { type: String },
   featured: {type: Boolean, default: false},
-  isVegan: {type: Boolean, default: false},
 });
 
  module.exports = mongoose.model("Products", productsSchema);
