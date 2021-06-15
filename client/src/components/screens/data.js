@@ -6,7 +6,7 @@ export const products = [
         price: "250",
         img: "./upload/nike1.jpeg",
         countInStock: "25",
-        raiting: 4,
+        raiting: 4.5,
         numReview: "152",
         featured: false
     },
@@ -17,7 +17,7 @@ export const products = [
         price: "250",
         img: "./upload/nike2.jpeg",
         countInStock: "25",
-        raiting: 4,
+        raiting: 3.26,
         numReview: "152",
         featured: false
     },
@@ -28,7 +28,7 @@ export const products = [
         price: "250",
         img: "./upload/nike3.jpeg",
         countInStock: "25",
-        raiting: 4,
+        raiting: 5,
         numReview: "152",
         featured: false
     },
@@ -39,7 +39,7 @@ export const products = [
         price: "250",
         img: "./upload/nike1.jpeg",
         countInStock: "25",
-        raiting: 4,
+        raiting: 2.98,
         numReview: "152",
         featured: false
     },
