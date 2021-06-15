@@ -1,6 +1,7 @@
 const express = require("express");
 const productRoute = express.Router();
 const Products = require("../models/products");
+const data = require('../data.js')
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -17,17 +18,24 @@ const upload = multer({ storage: storage });
 
 
 productRoute.get("/", async (req, res) => {
-  try {
-    const products = await Products.find({});
-    if (products.length === 0) {
+    try{
+      res.json(data)
       
-      res.json({message:"the Product section is Empty"})
-    } else {
-      res.json(products)
-    }
-  } catch (error) {
-    res.json(error)
-  }
+    }catch(error){
+      res.status(400).json(error)
+        }
+
+  // try {
+  //   const products = await Products.find({});
+  //   if (products.length === 0) {
+      
+  //     res.json({message:"the Product section is Empty"})
+  //   } else {
+  //     res.json(products)
+  //   }
+  // } catch (error) {
+  //   res.json(error)
+  // }
 });
 
 productRoute.post("/", upload.single("img"), async (req, res) => {
