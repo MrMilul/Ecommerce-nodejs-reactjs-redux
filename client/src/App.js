@@ -1,18 +1,26 @@
 import React from 'react'
-import Layout from './components/layout/Layout.js'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import { Provider } from 'react-redux'
+
+
+
+import Layout from './components/layout/Layout.js'
 import Home from './components/screens/Home.js'
+import store from './redux'
 
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Layout>
-            <Route exact path="/" component={Home}/>
-        </Layout>
-      </Switch>
-    </BrowserRouter>
+    <Provider>
+      <BrowserRouter>
+        <Switch>
+          <Layout>
+              <Route exact path="/" component={Home}/>
+          </Layout>
+        </Switch>
+      </BrowserRouter>
+    </Provider>
+    
   )
 }
 
