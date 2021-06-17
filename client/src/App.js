@@ -11,7 +11,7 @@ import store from './redux'
 
 const App = () => {
   return (
-    <Provider>
+    <Provider store={store}>
       <BrowserRouter>
         <Switch>
           <Layout>
