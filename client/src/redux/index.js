@@ -4,8 +4,7 @@ import rootReducer from './reducers'
 
 
 const initialState = {
-    cart: { cartItems:{}, shipping: {}, payment: {} },
-    userSignin: { userInfo:{} },
+   
   };
 
 
