@@ -38,6 +38,17 @@ productRoute.get("/", async (req, res) => {
   // }
 });
 
+productRoute.get("/:id", (req, res)=>{
+  const product = data.products.find((x)=>x.id === req.params.id)
+
+  if(product){
+    res.json(product)
+  }else{
+    res.staus(404).json("Product Not Found")
+  }
+
+
+})
 productRoute.post("/", upload.single("img"), async (req, res) => {
   try {
     const product = new Products({

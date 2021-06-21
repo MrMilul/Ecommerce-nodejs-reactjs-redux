@@ -1,7 +1,7 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect} from 'react'
 import {  useDispatch, useSelector} from 'react-redux'
 import { produtsList } from '../../redux/actions/products'
-
+import { Link } from 'react-router-dom'
 
 import Raiting from '../constants/Raiting'
 import LoadingBox from '../constants/LoadingBox'
@@ -42,7 +42,7 @@ const Products = () => {
                                         <div className="card-body">
                                             <h5 className="card-title">{product.name}</h5>
                                             <p className="card-text">{product.desc}</p>
-                                            <a href="#" className="btn btn-success">Add to Card</a>
+                                            <Link to={`product/${product.id}`} className="btn btn-success">More Info</Link>
                                             <p>Number of Review: {product.numReview}</p>
                                             <Raiting raiting={product.raiting} />
 
