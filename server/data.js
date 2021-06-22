@@ -7,7 +7,7 @@ const data = {
             desc: "this is the first product",
             price: "250",
             img: "./upload/nike1.jpeg",
-            countInStock: "25",
+            countInStock: 25,
             raiting: 4.5,
             numReview: "152",
             featured: false
@@ -18,7 +18,7 @@ const data = {
             desc: "this is the second product",
             price: "250",
             img: "./upload/nike2.jpeg",
-            countInStock: "25",
+            countInStock: 25,
             raiting: 3.26,
             numReview: "152",
             featured: false
@@ -29,7 +29,7 @@ const data = {
             desc: "this is the third product",
             price: "250",
             img: "./upload/nike3.jpeg",
-            countInStock: "25",
+            countInStock: 0,
             raiting: 5,
             numReview: "152",
             featured: false
@@ -40,7 +40,7 @@ const data = {
             desc: "this is the forth product",
             price: "250",
             img: "./upload/nike1.jpeg",
-            countInStock: "25",
+            countInStock: 25,
             raiting: 2.98,
             numReview: "152",
             featured: false
