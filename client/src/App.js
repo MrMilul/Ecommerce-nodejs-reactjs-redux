@@ -8,6 +8,7 @@ import Layout from './components/layout/Layout.js'
 import Home from './components/screens/Home.js'
 import store from './redux'
 import ProductDetail from './components/screens/ProductDetail.js'
+import Cart from './components/screens/Cart.js'
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
           <Layout>
               <Route exact path="/" component={Home}/>
               <Route path="/product/:id" component={ProductDetail}/>
+              <Route path="/cart/:id?" component={Cart}/>
           </Layout>
         </Switch>
       </BrowserRouter>

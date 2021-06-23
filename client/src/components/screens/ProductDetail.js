@@ -15,10 +15,9 @@ export default function ProductDetail(props) {
     const dispatch = useDispatch()
     const productDet = useSelector(state => state.productDetail)
     const { loading, error, product } = productDet
-    const img = product.img
     
     const AddToCartHandler = ()=>{
-        props.history.push(`/cart/${product.id}?qty=${Qty}`)
+        props.history.push(`/cart/${product._id}?qty=${Qty}`)
     }   
     
     useEffect(()=>{
@@ -35,7 +34,7 @@ export default function ProductDetail(props) {
                             <div className="col-lg-6 col-sm-12 mb-3">
                                 <div className="card">
                                     <div className="card-body">
-                                        <img src={img} className="img" style={{width: "100%"}}alt={product.img}/>                                   
+                                        <img src={product.img} className="img" style={{width: "100%"}}alt={product.img}/>                                   
                                     </div>
                                  </div>
                             </div>
@@ -55,7 +54,7 @@ export default function ProductDetail(props) {
                             <div className="col-lg-3 col-sm-12 mb-3">
                              <div className="card" >
                                     <div className="card-body">
-                                       <ul>
+                                       <ul className="p-3" >
                                            <li>Price : {product.price}</li>
                                            <li>
                                                 status: {''}
@@ -63,13 +62,20 @@ export default function ProductDetail(props) {
                                            </li>
                                            <li>
                                                QTY: {product.countInStock > 0 && (
+                                                   <>
                                                    <select value={Qty} onChange={(e=>setQty(e.target.value))}>
                                                        {[...Array(product.countInStock).keys()].map((x)=>(
                                                            <option key={x + 1} value={x + 1}>{x + 1}</option>
                                                        ))}
                                                    </select>
-                                               )}
-                                               <button onClick={AddToCartHandler} className={product.countInStock > 0 ? "btn btn-success btn-block": "btn btn-success btn-block disabled"}>Add to Cart</button>
+                                               
+                                               <button onClick={AddToCartHandler} className="btn btn-outline-success btn-block">
+                                                    Add to Cart
+                                                </button>
+                                                </>
+                                                )
+                                               }
+                                                
                                            </li>
                                        </ul>
                                         

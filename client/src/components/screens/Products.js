@@ -37,12 +37,12 @@ const Products = () => {
                             products.map(product => {
                                 return (
 
-                                    <div key={product.id} className="card m-2" style={style} >
+                                    <div key={product._id} className="card m-2" style={style} >
                                         <img style={imgStyle} src={product.img} className="card-img-top" alt="pic" />
                                         <div className="card-body">
                                             <h5 className="card-title">{product.name}</h5>
                                             <p className="card-text">{product.desc}</p>
-                                            <Link to={`product/${product.id}`} className="btn btn-success">More Info</Link>
+                                            <Link to={`product/${product._id}`} className="btn btn-success">More Info</Link>
                                             <p>Number of Review: {product.numReview}</p>
                                             <Raiting raiting={product.raiting} />
 

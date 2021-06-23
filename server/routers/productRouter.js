@@ -39,7 +39,7 @@ productRoute.get("/", async (req, res) => {
 });
 
 productRoute.get("/:id", (req, res)=>{
-  const product = data.products.find((x)=>x.id === req.params.id)
+  const product = data.products.find((x)=>x._id === req.params.id)
 
   if(product){
     res.json(product)
