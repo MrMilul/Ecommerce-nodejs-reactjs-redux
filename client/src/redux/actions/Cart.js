@@ -1,9 +1,9 @@
 import axios from 'axios'
-import CART_ADD_ITEM from '../types/CartType'
+import {CART_ADD_ITEM} from '../types/CartType'
 
 
 
-export const addToCart = (productId, Qty)=> async(dispatch, getState){
+export const addToCart = (productId, Qty)=> async(dispatch, getState)=>{
 
     const { data } = await axios.get(`/api/products/${productId}`)
 
