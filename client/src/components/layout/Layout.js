@@ -1,8 +1,13 @@
 import React from 'react'
+import {useSelector}     from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { FaUserCircle } from 'react-icons/fa'
-export default function layout(props) {
+
+
+export default function Layout(props) {
+
+    const cartItem = useSelector((state)=>state.cart.cartItems)
     return (
         <>
         
@@ -26,7 +31,16 @@ export default function layout(props) {
                             type="submit">Search</button>
                         </form>
 
-
+                        <div className="mr-3">
+                            <i className="fas fa-shopping-cart" style={{color: "green"}}></i>
+                            {
+                                cartItem.length > 0 &&(
+                                    <span className="badge badge-pill badge-danger">{cartItem.length}</span>
+                                )
+                            }
+                            
+                        </div>
+                        
                         <div className="btn-group mr-5">
                         <div className="btn-group dropdown" role="group">
                             <button type="button" 
