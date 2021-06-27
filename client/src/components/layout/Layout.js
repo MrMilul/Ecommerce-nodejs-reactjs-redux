@@ -32,7 +32,8 @@ export default function Layout(props) {
                         </form>
 
                         <div className="mr-3">
-                            <i className="fas fa-shopping-cart" style={{color: "green"}}></i>
+                        <Link to="/cart"><i className="fas fa-shopping-cart" style={{color: "green"}}></i></Link>
+                            
                             {
                                 cartItem.length > 0 &&(
                                     <span className="badge badge-pill badge-danger">{cartItem.length}</span>
