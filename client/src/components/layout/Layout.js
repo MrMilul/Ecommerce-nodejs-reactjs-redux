@@ -41,24 +41,27 @@ export default function Layout(props) {
                             }
                             
                         </div>
-                        
-                        <div className="btn-group mr-5">
-                        <div className="btn-group dropdown" role="group">
-                            <button type="button" 
-                            className="btn btn-success dropdown-toggle dropdown-toggle-split" 
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span className="sr-only">Toggle Dropleft</span>
-                            </button>
-                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="#">Action</a>
-                                <a className="dropdown-item" href="#">Another action</a>
-                                <a className="dropdown-item" href="#">Something </a>
-                            </div>
+                        <div>
+                            <Link className="btn btn-outline-success mr-2" to="/signin">Sing In</Link>
                         </div>
-                        <button type="button" className="btn btn-outline-success">
-                            <FaUserCircle  className="mr-2"/>
-                            User                       
-                        </button>
+                       
+                        <div className="btn-group mr-5">
+                            <div className="btn-group dropdown" role="group">
+                                <button type="button" 
+                                className="btn btn-success dropdown-toggle dropdown-toggle-split" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span className="sr-only">Toggle Dropleft</span>
+                                </button>
+                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a className="dropdown-item" href="#">Action</a>
+                                    <a className="dropdown-item" href="#">Another action</a>
+                                    <a className="dropdown-item" href="#">Something </a>
+                                </div>
+                            </div>
+                            <button type="button" className="btn btn-outline-success">
+                                <FaUserCircle  className="mr-2"/>
+                                User                       
+                            </button>
                         </div>
                 </div>
             </nav>
