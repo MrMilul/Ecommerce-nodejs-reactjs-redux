@@ -5,7 +5,7 @@ const EmailValidation = (email) => {
   return re.test(email);
 };
 
-const usersSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     email: {
@@ -28,4 +28,4 @@ const usersSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Users", usersSchema);
+module.exports = mongoose.model("User", userSchema);
