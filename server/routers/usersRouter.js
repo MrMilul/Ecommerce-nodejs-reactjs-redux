@@ -1,6 +1,6 @@
 const express = require('express');
 const usersRoute = express.Router();
-const Users = require('../models/users')
+const User = require('../models/users')
 const bcrypt = require('bcryptjs')
 const { generateToken } = require('../config/token.js')
 
@@ -22,7 +22,7 @@ const { generateToken } = require('../config/token.js')
 
 usersRoute.post('/register', async(req, res)=>{
     try{
-        const user = await Users.find({email:req.body.email})
+        const user = await User.find({email:req.body.email})
         if(user){
             res.status(400).json({message: "An account by given Email already Exist!"})
         }else{

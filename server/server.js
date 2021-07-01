@@ -18,8 +18,8 @@ app.use('/upload/',express.static('upload'))
 const PORT = process.env.PORT || 5000;
 
 //********************************** DB *******************************************//
-// const connectionToDB = require("./config/db.js");
-// connectionToDB();
+const connectionToDB = require("./config/db.js");
+connectionToDB();
 //********************************** Routers *******************************************//
 const categoryRoute = require("./routers/categotyRouter.js");
 const productRoute = require("./routers/productRouter.js");
