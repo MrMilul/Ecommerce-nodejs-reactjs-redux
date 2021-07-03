@@ -10,8 +10,8 @@ import Raiting from '../constants/Raiting'
 
 export default function ProductDetail(props) {
    const [Qty, setQty] = useState(1)
-    console.log(Qty)
     const productId = props.match.params.id
+    
     const dispatch = useDispatch()
     const productDet = useSelector(state => state.productDetail)
     const { loading, error, product } = productDet
