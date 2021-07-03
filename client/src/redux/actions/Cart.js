@@ -5,7 +5,7 @@ import {CART_ADD_ITEM, CART_REMOVE_ITEM} from '../types/CartType'
 
 export const addToCart = (productId, Qty)=> async(dispatch, getState)=>{
 
-    const { data } = await axios.get(`/api/products/${productId}`)
+    const { data } = await axios.get(`/api/products/seed/${productId}`)
 
     dispatch({
         type: CART_ADD_ITEM,
