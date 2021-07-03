@@ -14,10 +14,10 @@ export const produtsList = () => async (dispatch) => {
     })
 
     try {
-        const { data } = await axios.get('/api/products')
+        const { data } = await axios.get('/api/products/seed')
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
-            payload: data.products
+            payload: data
         })
     } catch (error) {
         dispatch({
@@ -34,7 +34,7 @@ export const ProductDetailAction = (productId) => async (dispatch) => {
     })
 
     try{
-        const {data} = await axios.get(`/api/products/${productId}`)
+        const {data} = await axios.get(`/api/products/seed/${productId}`)
         dispatch({
             type: PRODUCT_DETAIL_SUCCESS,
             payload: data
