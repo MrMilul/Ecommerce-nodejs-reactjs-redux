@@ -1,8 +1,11 @@
 const express = require("express");
 const productRoute = express.Router();
 const Products = require("../models/products");
+const data1 = require('../models/data')
 const data = require('../data.js')
 const multer = require("multer");
+const products = require("../models/products");
+const { json } = require("body-parser");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -17,52 +20,43 @@ const upload = multer({ storage: storage });
 
 
 
-productRoute.get("/", async (req, res) => {
-    try{
-      res.json(data)
+productRoute.get("/seed", async(req,res)=>{
+    try {
+    const products = await Products.find({});
+    if (products.length === 0) {
       
-    }catch(error){
-      res.status(400).json(error)
-        }
-
-  // try {
-  //   const products = await Products.find({});
-  //   if (products.length === 0) {
-      
-  //     res.json({message:"the Product section is Empty"})
-  //   } else {
-  //     res.json(products)
-  //   }
-  // } catch (error) {
-  //   res.json(error)
-  // }
-});
-
-productRoute.get("/:id", (req, res)=>{
-  const product = data.products.find((x)=>x._id === req.params.id)
-
-  if(product){
-    res.json(product)
-  }else{
-    res.staus(404).json("Product Not Found")
+      res.json({message:"the Product section is Empty"})
+    } else {
+      res.json(products)
+    }
+  } catch (error) {
+    res.json(error)
   }
 
-
 })
+
+productRoute.get("/seed/:id", async(req, res)=>{
+  const productId = req.params.id
+  try{
+    const product = await Products.findById({_id: productId})
+    res.status(200).json(product)
+  }catch(error){
+    res.status(400).json({message: error})
+  }
+})
+
+
 productRoute.post("/", upload.single("img"), async (req, res) => {
   try {
     const product = new Products({
       name: req.body.name,
       price: req.body,
       img: req.file.path,
-      discount: req.body,
       desc: req.body.desc,
       countInStock: req.body.countInStock,
-      ingredientes: req.body.ingredientes,
       raiting: req.body,
       numReview: req.body.numReview,
       featured: req.body.featured,
-      isVegan: req.body.isVegan,
     });
 
     const createProduct = await product.save();
