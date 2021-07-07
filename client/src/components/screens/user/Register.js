@@ -1,24 +1,27 @@
 import React, {useState} from 'react'
+import { useDispatch } from 'react-redux'
+
+
+import { userRegisteration } from '../../../redux/actions/User'
 import MessageBox from '../../constants/MessageBox';
 
 const Register = () => {
-        const [name, SetName] = useState("");
-        const [email, SetEmail] = useState("");
-        const [password, SetPassword] = useState("");
-        const [confirmPassword, SetconfirmPassword] = useState("");
-        const [confPassError, setconfPassError] = useState(false);
+    const [name, SetName] = useState("");
+    const [email, SetEmail] = useState("");
+    const [password, SetPassword] = useState("");
+    const [confirmPassword, SetconfirmPassword] = useState("");
+    const [confPassError, setconfPassError] = useState(false);
+
+    const dispatch = useDispatch()
 
     const submitHandler = (e) =>{
         e.preventDefault()
-        const userData = {
-            name: name,
-            email: email,
-            password: password
-        } 
+        
         if(confirmPassword !== password){
             setconfPassError(true)
         }else{
-            // action for register
+            dispatch(userRegisteration(name, email, password))
+
         }
     }
     return (

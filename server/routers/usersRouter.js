@@ -21,12 +21,13 @@ const { generateToken } = require('../config/token.js')
 // })
 
 usersRoute.post('/register', async(req, res)=>{
-    try{
-        const user = await User.find({email:req.body.email})
-        if(user){
-            res.status(400).json({message: "An account by given Email already Exist!"})
-        }else{
-            const user = new Users({
+    const user = await User.findOne({email:req.body.email})
+    if(user){
+        res.status(409).json({error: "Given Email already exist!"})
+    }else{
+
+        try{
+            const user = new User({
                 name: req.body.name,
                 email:req.body.email,
                 password: bcrypt.hashSync(req.body.password, 8),
@@ -39,18 +40,21 @@ usersRoute.post('/register', async(req, res)=>{
                 email:createUser.email,
                 isAdmin: createUser.isAdmin,
                 token: generateToken(createUser)
+            
             })
+            
+         
+        }catch(error){
+            res.status(400).json(error)
         }
-        
-     
-    }catch(error){
-        res.status(400).json(error.message)
     }
+
+   
     
 })
 
 usersRoute.post('/signin', async(req, res)=>{
-    const user = await Users.findOne({email:req.body.email})
+    const user = await User.findOne({email:req.body.email})
     if(user){
         if(bcrypt.compareSync(req.body.password, user.password)){
             res.status(200).json({
@@ -65,7 +69,7 @@ usersRoute.post('/signin', async(req, res)=>{
             res.status(401).json({message: "Invalid Email or Password, please Try again!"})
         }
     }else{
-        res.status(401).json({message: "Invalid Credential, please Try again!"})
+        res.status(400).json({message: "Invalid Credential, please Try again!"})
     }
 })
 module.exports = usersRoute;

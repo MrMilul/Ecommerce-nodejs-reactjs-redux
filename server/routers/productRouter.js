@@ -1,8 +1,7 @@
 const express = require("express");
 const productRoute = express.Router();
 const Products = require("../models/products");
-const data1 = require('../models/data')
-const data = require('../data.js')
+
 const multer = require("multer");
 const products = require("../models/products");
 const { json } = require("body-parser");
