@@ -1,20 +1,28 @@
 import React from 'react'
-import {useSelector}     from 'react-redux'
+import {useSelector, useDispatch}     from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import { signOut } from '../../redux/actions/User'
 import { FaUserCircle } from 'react-icons/fa'
 
 
 export default function Layout(props) {
-
+    const dispatch = useDispatch()
     const cartItem = useSelector((state)=>state.cart.cartItems)
+    const user = useSelector(state => state.userSignIn)
+    const {loading, error, userInfo} = user
+    const signOutHandler = ()=>{
+        dispatch(signOut())
+    }
     return (
         <>
         
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <Link className="navbar-brand" to="/">Ecommerce</Link>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler" type="button"
+                 data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
                 </button>
 
@@ -42,27 +50,31 @@ export default function Layout(props) {
                             
                         </div>
                         <div>
-                            <Link className="btn btn-outline-success mr-2" to="/signin">Sing In</Link>
+                            {
+                                userInfo ? <div className="btn-group mr-5">
+                                <div className="btn-group dropdown" role="group">
+                                    <button type="button" 
+                                    className="btn btn-success dropdown-toggle dropdown-toggle-split" 
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span className="sr-only">Toggle Dropleft</span>
+                                    </button>
+                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a onClick={signOutHandler}className="dropdown-item" href="#">SignOut</a>
+                                        <a className="dropdown-item" href="#">Another action</a>
+                                        <a className="dropdown-item" href="#">Something </a>
+                                    </div>
+                                </div>
+                                <button type="button" className="btn btn-outline-success">
+                                    <FaUserCircle  className="mr-2"/>
+                                    {userInfo.name.toUpperCase()}                      
+                                </button>
+                            </div>
+                                : <Link className="btn btn-outline-success mr-2" to="/signin">Sing In</Link>
+                            }
+                            
                         </div>
                        
-                        <div className="btn-group mr-5">
-                            <div className="btn-group dropdown" role="group">
-                                <button type="button" 
-                                className="btn btn-success dropdown-toggle dropdown-toggle-split" 
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span className="sr-only">Toggle Dropleft</span>
-                                </button>
-                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a className="dropdown-item" href="#">Action</a>
-                                    <a className="dropdown-item" href="#">Another action</a>
-                                    <a className="dropdown-item" href="#">Something </a>
-                                </div>
-                            </div>
-                            <button type="button" className="btn btn-outline-success">
-                                <FaUserCircle  className="mr-2"/>
-                                User                       
-                            </button>
-                        </div>
+                        
                 </div>
             </nav>
             <div>{props.children}</div>
