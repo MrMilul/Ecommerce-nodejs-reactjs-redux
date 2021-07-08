@@ -23,7 +23,7 @@ const { generateToken } = require('../config/token.js')
 usersRoute.post('/register', async(req, res)=>{
     const user = await User.findOne({email:req.body.email})
     if(user){
-        res.status(409).json({error: "Given Email already exist!"})
+        res.status(409).json({message: "Given Email already exist!"})
     }else{
 
         try{
