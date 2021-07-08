@@ -23,7 +23,9 @@ export const userRegisteration = (name, email, password)=> async(dispatch)=>{
     }catch(error){
         dispatch({
             type: USER_REGISTERATION_FAIL, 
-            payload: error.message
+            payload: error.response && error.response.data.message 
+            ? error.response.data.message
+            :error.message   
         })
     }
 }
@@ -54,8 +56,11 @@ export const userSignIn = (email, password)=> async(dispatch)=>{
 }
 
 export const signOut = ()=> (dispatch)=>{
+    // localStorage.removeItem('userInfo')
+    // window.localStorage.removeItem('cartItems')
+    localStorage.clear()
     dispatch({
         type:USER_SIGNOUT
     })
-    localStorage.removeItem('userInfo')
+    
 }
