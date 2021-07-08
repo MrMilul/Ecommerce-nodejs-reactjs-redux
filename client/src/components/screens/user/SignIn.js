@@ -1,15 +1,24 @@
 import React, {useState, useEffect} from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
 
 import { userSignIn } from '../../../redux/actions/User'
+import MessageBox from '../../constants/MessageBox'
 
- const SignIn = () => {
+
+
+
+ const SignIn = (props) => {
 
 
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const dispatch = useDispatch()
+
+    const { loading, error, userInfo} = useSelector((state)=>state.userSignIn)
+   
+    const redirect = props.location.search ? props.location.search.split('=')[1] : "/" 
+
 
     const submitHandler = (e)=>{
         e.preventDefault();
@@ -18,7 +27,11 @@ import { userSignIn } from '../../../redux/actions/User'
 
     }
     
-
+    useEffect(()=>{
+        if(userInfo){
+            props.history.push(redirect)
+        }
+    },[props.history, redirect, userInfo])
     return (
         <div className="container mt-5">
         <div className="row">
@@ -56,7 +69,14 @@ import { userSignIn } from '../../../redux/actions/User'
 
 
                 <div className="col">
-                    {/* error box */}
+                    {
+                        error && (
+                        <MessageBox status="danger">
+                            {error}
+                        </MessageBox>
+                        )
+                    }
+                   
                 </div>
         </div>
     </div>
