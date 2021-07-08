@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 
 
 import { userRegisteration } from '../../../redux/actions/User'
@@ -12,6 +12,7 @@ const Register = () => {
     const [confirmPassword, SetconfirmPassword] = useState("");
     const [confPassError, setconfPassError] = useState(false);
 
+    const { error } = useSelector((state)=>state.userRegister)
     const dispatch = useDispatch()
 
     const submitHandler = (e) =>{
@@ -65,10 +66,14 @@ const Register = () => {
 
                     <div className="col">
                        {
-                           confPassError && (
+                           confPassError ? (
                                <MessageBox status={"danger"}> 
                                <p>Given Psswords Does Not Match! Try it again</p>
                                </MessageBox>
+                           ) :  error && (
+                            <MessageBox status={"danger"}> 
+                            <p>{error}</p>
+                            </MessageBox>
                            )
                        }
                     </div>
