@@ -1,0 +1,27 @@
+.stepsContainer{
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    
+}
+
+.steps{
+    height: 5px;
+    width: 263px;
+    border: rgb(81, 196, 46) solid 1px;
+    margin-right: 3px;
+    margin-bottom: 15px;
+}
+
+.stepConainer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    font-weight: bold
+  }
+
+  .stepActive{
+      background-color:rgb(81, 196, 46);
+  }
