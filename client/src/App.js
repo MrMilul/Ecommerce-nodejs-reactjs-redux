@@ -1,7 +1,7 @@
 import React from 'react'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Router} from 'react-router-dom'
 import { Provider } from 'react-redux'
-
+import ShippingAddressScreen from './components/screens/ShippingAddressScreen.js'
 
 
 import Layout from './components/layout/Layout.js'
@@ -24,6 +24,7 @@ const App = () => {
               <Route path="/cart/:id?" component={Cart}/>
               <Route path="/signin" component={SignIn}/>
               <Route path="/register" component={Register}/>
+              <Route path="/shipping" component={ShippingAddressScreen}/>
           </Layout>
         </Switch>
       </BrowserRouter>

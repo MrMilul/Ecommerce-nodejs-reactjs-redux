@@ -5,7 +5,7 @@ import { useDispatch, useSelector} from 'react-redux'
 import { userRegisteration } from '../../../redux/actions/User'
 import MessageBox from '../../constants/MessageBox';
 
-const Register = () => {
+const Register = (props) => {
     const [name, SetName] = useState("");
     const [email, SetEmail] = useState("");
     const [password, SetPassword] = useState("");
@@ -22,7 +22,7 @@ const Register = () => {
             setconfPassError(true)
         }else{
             dispatch(userRegisteration(name, email, password))
-
+            props.history.push('/')
         }
     }
     return (
