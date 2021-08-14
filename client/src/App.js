@@ -11,6 +11,8 @@ import ProductDetail from './components/screens/ProductDetail.js'
 import Cart from './components/screens/Cart.js'
 import SignIn from './components/screens/user/SignIn.js'
 import Register from './components/screens/user/Register.js'
+import Payment from './components/screens/Payment.js'
+import PlaceHolder from './components/screens/PlaceHolder.js'
 
 
 const App = () => {
@@ -25,6 +27,8 @@ const App = () => {
               <Route path="/signin" component={SignIn}/>
               <Route path="/register" component={Register}/>
               <Route path="/shipping" component={ShippingAddressScreen}/>
+              <Route path="/payment" component={Payment}/>
+              <Route path="/placeholder" component={PlaceHolder}/>
           </Layout>
         </Switch>
       </BrowserRouter>
