@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CheckoutSteps from '../constants/CheckoutSteps'
 import { saveShippingAddress } from '../../redux/actions/Cart'
 
 
 
 const ShippingAddressScreen = (props) => {
-    const [fullName, setFullName] = useState()
-    const [address, setaddress] = useState()
-    const [city, setCity] = useState()
-    const [country, setCountry] = useState()
-    const [postalCode, setpostalCode] = useState()
+
+    const cart = useSelector(state => state.cart)
+    const { shippingAddress } = cart
+
+    const [fullName, setFullName] = useState(shippingAddress.fullName)
+    const [address, setaddress] = useState(shippingAddress.address)
+    const [city, setCity] = useState(shippingAddress.city)
+    const [country, setCountry] = useState(shippingAddress.country)
+    const [postalCode, setpostalCode] = useState(shippingAddress.postalCode)
 
 
 
@@ -42,29 +46,39 @@ const ShippingAddressScreen = (props) => {
 
                         <div className="form-group">
                             <label Htmlfor="exampleInputPassword1">Full Name</label>
-                            <input type="text"
+                            <input type="text" required
+                                value={fullName}
                                 className="form-control"
                                 id="exampleInputPassword1" onChange={(e) => setFullName(e.target.value)} />
                         </div>
 
                         <div className="form-group">
                             <label Htmlfor="exampleInputPassword2">Address</label>
-                            <input type="text" className="form-control" id="exampleInputPassword2" onChange={(e) => setaddress(e.target.value)} />
+                            <input type="text"
+                                required className="form-control"
+                                value={address}
+                                id="exampleInputPassword2" onChange={(e) => setaddress(e.target.value)} />
                         </div>
 
                         <div className="form-group">
                             <label Htmlfor="exampleInputPassword3">City</label>
-                            <input type="text" className="form-control" id="exampleInputPassword3" onChange={(e) => setCity(e.target.value)} />
+                            <input type="text" required className="form-control"
+                                value={city}
+                                id="exampleInputPassword3" onChange={(e) => setCity(e.target.value)} />
                         </div>
 
                         <div className="form-group">
                             <label Htmlfor="exampleInputPassword4">Country</label>
-                            <input type="text" className="form-control" id="exampleInputPassword4" onChange={(e) => setCountry(e.target.value)} />
+                            <input type="text" required 
+                                value={country}
+                            className="form-control" id="exampleInputPassword4" onChange={(e) => setCountry(e.target.value)} />
                         </div>
 
                         <div className="form-group">
                             <label Htmlfor="exampleInputPassword5">Postal Code</label>
-                            <input type="text" className="form-control" id="exampleInputPassword5" onChange={(e) => setpostalCode(e.target.value)} />
+                            <input type="text" required
+                                value={postalCode}
+                                className="form-control" id="exampleInputPassword5" onChange={(e) => setpostalCode(e.target.value)} />
                         </div>
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </form>
