@@ -1,10 +1,15 @@
 import React, {useState}from 'react'
 import { savePaymentMethod } from '../../redux/actions/Cart'
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import CheckoutSteps from '../constants/CheckoutSteps'
 
 const Payment = (props) => {
     const [paymentMethod, setPaymentMethod] = useState('paypal')
+    const cart = useSelector(state=>state.cart)
+    const {shippingAddress} = cart
+    if(!shippingAddress){
+        props.history.push('/shipping')
+    }
 
     const dispatch = useDispatch()
     const submitHandler = (e)=>{
