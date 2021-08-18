@@ -7,7 +7,8 @@ const Payment = (props) => {
     const [paymentMethod, setPaymentMethod] = useState('paypal')
     const cart = useSelector(state=>state.cart)
     const {shippingAddress} = cart
-    if(!shippingAddress){
+
+    if(!shippingAddress.address){
         props.history.push('/shipping')
     }
 

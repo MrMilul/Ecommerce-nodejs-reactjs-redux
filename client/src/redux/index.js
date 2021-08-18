@@ -13,7 +13,7 @@ const initialState = {
                 : {}, 
                 paymentMethod: localStorage.getItem('paymentMethod')
                 ? localStorage.getItem('paymentMethod')
-                : "paypal"
+                : null
         },
         userSignIn: {
                 userInfo: localStorage.getItem('userInfo')

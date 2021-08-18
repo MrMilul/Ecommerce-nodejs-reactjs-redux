@@ -7,6 +7,14 @@ import { saveShippingAddress } from '../../redux/actions/Cart'
 
 const ShippingAddressScreen = (props) => {
 
+    const user = useSelector(state=>state.userSignIn)
+    const {userInfo} = user
+
+    if(!userInfo){
+        props.history.push('/signIn')
+    }
+
+
     const cart = useSelector(state => state.cart)
     const { shippingAddress } = cart
 
