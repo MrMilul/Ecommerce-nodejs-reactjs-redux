@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from "react-router-dom"
+
 import './checkoutSteps.css'
 
 
 const CheckoutSteps = (props) => {
-    console.log(props.steps)
     return (
         <div className="stepsContainer">
 
@@ -13,17 +14,17 @@ const CheckoutSteps = (props) => {
             </div>
             
             <div className="stepConainer">
-                <div>Shiping</div>
+                <div><Link to='/shipping'>Shiping</Link></div>
                 <div className= {props.step2 ? "steps stepActive" : "steps" }></div>
             </div>
 
             <div className="stepConainer">
-                <div>payment</div>
+                <div><Link to='/payment'>Payment</Link></div>
                 <div className= {props.step3 ? "steps stepActive" : "steps" }></div>
             </div>
 
             <div className="stepConainer">
-                <div>place holder</div>
+                <div><Link to='/placeholder'>Place Holder</Link></div>
                 <div className= {props.step4 ? "steps stepActive" : "steps" }></div>
             </div>
         </div>
