@@ -1,3 +1,8 @@
+a{
+    color: black;
+   
+}
+
 .stepsContainer{
     display: flex;
     flex-flow: row wrap;
