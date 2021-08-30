@@ -31,5 +31,13 @@ orderRoute.post('/',isAuth, async (req, res) => {
     
 })
 
+orderRoute.get("/:id", isAuth, async(req, res)=>{
+    const order = await Order.findById(req.params.id)
+    if(order){
+        res.status(200).json(order)
+    }else{
+        res.status(400).json({message: "Order Not Found"})
+    }
 
+})
 module.exports = orderRoute;
