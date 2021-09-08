@@ -140,12 +140,12 @@ const PlaceHolder = (props) => {
 
                             <div className="d-flex justify-content-between">
                                 <h5>Tax</h5>
-                                {cart.tax} $
+                                {cart.taxPrice} $
                             </div>
 
                             <div className="d-flex justify-content-between">
                                 <h5>Order Total</h5>
-                                {cart.total} $
+                                {cart.totalPrice} $
                             </div>
 
 
