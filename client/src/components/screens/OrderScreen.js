@@ -72,10 +72,25 @@ const OrderScreen = (props) => {
                                             Quote
                                         </div>
                                         <div className="card-body">
-                                            <div>Items:</div>
-                                            <div>Shipping: </div>
-                                            <div>Tax: </div>
-                                            <div className="font-weight-bold">Order Total: </div>
+                                            <div className="d-flex justify-content-between">
+                                                <div>Items:</div>
+                                                <div>{order.itemsPrice}$</div>
+                                            </div>
+
+                                            <div className="d-flex justify-content-between">
+                                                <div>Shipping:</div>
+                                                <div>{order.shippingPrice}$</div>
+                                            </div>
+
+                                             <div className="d-flex justify-content-between">
+                                                <div>Tax:</div>
+                                                <div>{order.taxPrice}$</div>
+                                            </div>
+
+                                            <div className="d-flex justify-content-between">
+                                                <div className="font-weight-bold">Order Total:</div>
+                                                <div>{order.totalPrice}$</div>
+                                            </div>
 
                                             <button className="btn btn-block btn-success mt-5">PayPal</button>
 
