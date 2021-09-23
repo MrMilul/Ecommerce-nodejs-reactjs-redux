@@ -1,21 +1,66 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
-import { orderDetail } from '../../redux/actions/Order'
-
+import { orderDetail, payOrder } from '../../redux/actions/Order'
+import { PayPalButton } from "react-paypal-button-v2"
+import axios from 'axios'
 
 import LoadingBox from "../constants/LoadingBox"
 import MessageBox from "../constants/MessageBox"
+import { ORDER_PAY_RESET } from '../../redux/types/OrderTypes'
+
 const OrderScreen = (props) => {
     const orderId = props.match.params.id
-
+    const [sdkReady, setStdkReady] = useState(false)
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(orderDetail(orderId))
-    }, [orderId, dispatch])
 
     const orderDetails = useSelector(state => state.orderDetail)
     const { loading, error, order } = orderDetails
+
+
+    const orderPay = useSelector(state => state.payOrder)
+    const { loading:payloading, error:payerror, success:paysuccess } = orderPay
+
+    useEffect(() => {
+
+        const addPypalScript = async () => {
+            const { data } = await axios.get("/api/config/paypal")
+            const script = document.createElement("script")
+            script.type = "text/javascript"
+            script.src = `https://www.paypal.com/sdk/js?client-id=${data}`
+            script.async = true
+            script.onload = () => {
+                setStdkReady(true)
+            }
+            document.body.appendChild(script)
+        }
+
+        if (!order || paysuccess || (order && order._id !== orderId)) {
+            dispatch({type:ORDER_PAY_RESET})
+            dispatch(orderDetail(orderId))
+        } else {
+            if (!order.isPaid) {
+                if (!window.paypal) {
+                    addPypalScript()
+                } else {
+                    setStdkReady(true)
+                }
+            }
+        }
+
+    }, [orderId, dispatch, order, sdkReady])
+
+
+
+
+
+    const successPaymentHandler = (paymentResult) => {
+       dispatch(payOrder(order, paymentResult))
+
+       if(paysuccess){
+           props.history.push("/")
+       }
+   
+    }
 
     return (
         <div>
@@ -82,7 +127,7 @@ const OrderScreen = (props) => {
                                                 <div>{order.shippingPrice}$</div>
                                             </div>
 
-                                             <div className="d-flex justify-content-between">
+                                            <div className="d-flex justify-content-between">
                                                 <div>Tax:</div>
                                                 <div>{order.taxPrice}$</div>
                                             </div>
@@ -92,8 +137,24 @@ const OrderScreen = (props) => {
                                                 <div>{order.totalPrice}$</div>
                                             </div>
 
-                                            <button className="btn btn-block btn-success mt-5">PayPal</button>
+                                            <div>
+                                                {
+                                                    !order.isPaid && (
+                                                        <div>
+                                                            {
+                                                                !sdkReady ? <LoadingBox />
+                                                                    : (<PayPalButton
+                                                                        amount={order.totalPrice}
+                                                                        onSuccess={successPaymentHandler}
+                                                                    >
 
+                                                                    </PayPalButton>)
+                                                            }
+                                                        </div>
+
+                                                    )
+                                                }
+                                            </div>
                                         </div>
                                     </div>
 

@@ -24,12 +24,14 @@ connectionToDB();
 const categoryRoute = require("./routers/categotyRouter.js");
 const productRoute = require("./routers/productRouter.js");
 const usersRoute = require('./routers/usersRouter.js');
-const orderRoute = require('./routers/orderRouter.js')
+const orderRoute = require('./routers/orderRouter.js');
+const paypalRoute = require('./routers/paypalRouter.js')
 
 app.use("/api/category", categoryRoute);
 app.use("/api/products", productRoute);
-app.use("/api/user", usersRoute)
-app.use("/api/order", orderRoute)
+app.use("/api/user", usersRoute);
+app.use("/api/order", orderRoute);
+app.use("/api/config/paypal", paypalRoute)
 
 //********************************** Error Handleling ***********************************//
 app.use((req, res, next) => {
