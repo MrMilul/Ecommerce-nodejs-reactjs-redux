@@ -9,7 +9,10 @@ import {
     ORDER_DETAIL_FAIL, 
     ORDER_PAY_REQUEST,
     ORDER_PAY_SUCCESS,
-    ORDER_PAY_FAIL
+    ORDER_PAY_FAIL, 
+    ORDER_MINE_LIST_FAIL,
+    ORDER_MINE_LIST_REQUEST,
+    ORDER_MINE_LIST_SUCCESS
 } from "../types/OrderTypes"
 
 
@@ -109,3 +112,34 @@ export const payOrder = (order, paymentResult)=> async(dispatch, getState)=>{
         })
     }
 } 
+
+
+export const listOrderMine = ()=> async(dispatch,getState)=>{
+    const { userSignIn: { userInfo } } = getState()
+
+    dispatch({
+        type: ORDER_MINE_LIST_REQUEST,
+    })
+
+    try{
+        const { data } = await axios.get("/api/order/mine", {
+            headers: {
+                authorization: `Bearer ${userInfo.token}`
+            }
+        })
+
+        dispatch({
+            type: ORDER_MINE_LIST_SUCCESS,
+            payload: data
+            
+        })
+    }catch(error){
+
+        dispatch({
+            type: ORDER_MINE_LIST_FAIL,
+            payload: error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        })
+    }
+}
