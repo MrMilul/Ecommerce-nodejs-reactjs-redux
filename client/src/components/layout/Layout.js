@@ -60,7 +60,7 @@ export default function Layout(props) {
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a onClick={signOutHandler}className="dropdown-item" href="#">SignOut</a>
-                                        <a className="dropdown-item" href="#">Another action</a>
+                                        <Link className="dropdown-item" to="/orderHistory">Order History</Link>
                                         <a className="dropdown-item" href="#">Something </a>
                                     </div>
                                 </div>
