@@ -61,7 +61,7 @@ export default function Layout(props) {
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a onClick={signOutHandler}className="dropdown-item" href="#">SignOut</a>
                                         <Link className="dropdown-item" to="/orderHistory">Order History</Link>
-                                        <a className="dropdown-item" href="#">Something </a>
+                                        <Link className="dropdown-item" to="/profile">Profile </Link>
                                     </div>
                                 </div>
                                 <button type="button" className="btn btn-outline-success">

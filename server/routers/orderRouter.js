@@ -1,11 +1,17 @@
 const express = require("express")
-const { now } = require("mongoose")
 const { isAuth } = require("../config/utils")
 const orderRoute = express.Router()
 
 
 const Order = require('../models/orderModel')
-
+orderRoute.get(
+    '/mine',
+    isAuth,
+   async (req, res) => {
+      const orders = await Order.find({ user: req.user._id });
+      res.send(orders);
+    }
+  );
 
 
 orderRoute.post('/', isAuth, async (req, res) => {
@@ -42,26 +48,30 @@ orderRoute.get("/:id", isAuth, async (req, res) => {
 
 })
 
-orderRoute.put("/:id/pay", async (req, res) => {
+orderRoute.put("/:id/pay", isAuth, async (req, res) => {
 
     const order = await Order.findById(req.params.id)
 
-    if(order){
+    if (order) {
         order.isPaid = true
         order.paidAt = Date.now()
         order.paymentResult = {
-            id : req.body.id,
-            status : req.body.status,
-            update_time : req.body.update_time,
-            email_address : req.body.emailaddress
+            id: req.body.id,
+            status: req.body.status,
+            update_time: req.body.update_time,
+            email_address: req.body.emailaddress
         }
         const updateOrder = await order.save()
-        res.json({"message": "Order Paid", order:updateOrder})
+        res.json({ "message": "Order Paid", order: updateOrder })
 
-    }else{
-        res.status(404).json({"message": "Order Not Found"})
+    } else {
+        res.status(404).json({ "message": "Order Not Found" })
     }
 
 })
+
+
+
+
 
 module.exports = orderRoute;

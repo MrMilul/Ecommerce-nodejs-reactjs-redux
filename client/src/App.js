@@ -14,6 +14,8 @@ import Register from './components/screens/user/Register.js'
 import Payment from './components/screens/Payment.js'
 import PlaceHolder from './components/screens/PlaceHolder.js'
 import OrderScreen from './components/screens/OrderScreen.js'
+import OrderHistoryScreen from './components/screens/OrderHistoryScreen.js'
+import Profile from './components/screens/user/Profile.js'
 
 
 const App = () => {
@@ -31,6 +33,8 @@ const App = () => {
               <Route path="/payment" component={Payment}/>
               <Route path="/placeholder" component={PlaceHolder}/>
               <Route path="/order/:id" component={OrderScreen}/>
+              <Route path="/orderHistory" component={OrderHistoryScreen}/>
+              <Route path="/profile" component={Profile}/>
           </Layout>
         </Switch>
       </BrowserRouter>

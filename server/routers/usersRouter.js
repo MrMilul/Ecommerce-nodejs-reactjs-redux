@@ -20,6 +20,16 @@ const { generateToken } = require('../config/token.js')
 //     }
 // })
 
+usersRoute.get('/:id', async(req, res)=>{
+    const user = await User.findById(req.params.id)
+
+    if(user){
+        res.json(user)
+    }else{
+        res.status(404).json({message: "User Not Found"})
+    }
+    
+})
 usersRoute.post('/register', async(req, res)=>{
     const user = await User.findOne({email:req.body.email})
     if(user){
@@ -72,4 +82,7 @@ usersRoute.post('/signin', async(req, res)=>{
         res.status(400).json({message: "Invalid Credential, please Try again!"})
     }
 })
+
+
+
 module.exports = usersRoute;
