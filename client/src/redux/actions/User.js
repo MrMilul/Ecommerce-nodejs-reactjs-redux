@@ -10,7 +10,11 @@ import {
     USER_SIGNOUT,
     USER_DETAIL_REQUEST,
     USER_DETAIL_SUCCESS,
-    USER_DETAIL_FAIL
+    USER_DETAIL_FAIL,
+    USER_UPDATE_PROFILE_REQUEST,
+    USER_UPDATE_PROFILE_SUCCESS,
+    USER_UPDATE_PROFILE_FAIL,
+    USER_UPDATE_PROFILE_RESET
 }
     from '../types/RegisterationType'
 
@@ -97,4 +101,41 @@ export const userDetail = (id) => async(dispatch, getState) => {
         })
     }
 
+}
+
+
+export const updateUserProfile = (user)=> async (dispatch, getState)=>{
+    dispatch({
+        type: USER_UPDATE_PROFILE_REQUEST,
+        payload: user
+    })
+
+    const {userSignIn:{userInfo}} = getState();
+
+    try{
+        const {data} = await axios.put("api/users/profile", user,{
+            headers:{
+                authorization:`Bearer ${userInfo.token}`
+            }
+        })
+        dispatch({
+            type:USER_UPDATE_PROFILE_SUCCESS,
+            payload:data
+        })
+
+        dispatch({
+            type: USER_SIGNIN_SUCCESS,
+            payload:data
+        })
+
+        localStorage.setItem('userInfo', JSON.stringify(data))
+
+    }catch(error){
+        dispatch({
+            type:USER_UPDATE_PROFILE_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        })
+    }
 }
